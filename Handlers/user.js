@@ -6,16 +6,16 @@ require('dotenv').config();
 const createUser = async (req, res) => {
     try {
         const newUser = req.body; // email, name, and password
+        console.log(newUser)
+        // let existingUser = await User.findOne({
+        //     email: newUser.email
+        // })
 
-        let existingUser = await User.findOne({
-            email: newUser.email
-        })
-
-        if (existingUser) {
-            return res.status(400).send({
-                message: "User already exists"
-            })
-        }
+        // if (existingUser) {
+        //     return res.status(400).send({
+        //         message: "User already exists"
+        //     })
+        // }
 
         let user = await User(newUser);
         await user.save();
@@ -33,7 +33,7 @@ const userLogin = async (req, res) => {
         const { email, password } = req.body;
         console.log(email,password)
         const user = await User.findOne({ email }).populate('password');
-        // console.log(user)
+        console.log(user)
         if (!user) {
             return res.status(400).send({
                 message: "User does not exist"

@@ -3,14 +3,14 @@ const cors = require('cors');
 const { connectDB } = require('./Database/index');
 const userRouter = require('./Routes/user');
 
-const TodosRouter = require('./Routes/todos');
+const adminRouter = require('./Routes/admin');
 require('dotenv').config();
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(userRouter)
-app.use(TodosRouter);
+app.use(adminRouter);
 
 // app.get('/',(req,res)=>{
 //     res.send('server is started')
